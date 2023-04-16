@@ -1,0 +1,31 @@
+
+Deep Dive in Aggregate functions
+
+3. To find the number of employees belonging to each unique city in the employees_1 table of the sql_for_business_analytics database, you can use the following SQL query:
+
+SELECT city, COUNT(*) AS unique_city 
+FROM sql_for_business_analytics.employees_1 
+GROUP BY city;
+
+This query uses the GROUP BY clause to group the records in the employees_1 table by city, and then uses the COUNT(*) function to count the number of employees in each city. The result will include a list of all unique cities in the table, along with the number of employees belonging to each city.
+
+4. 
+SELECT MIN(age) AS minimum_age, MAX(age) AS maximum_age 
+FROM sql_for_business_analytics.employees_1
+WHERE status = 'terminated';
+
+This query selects the minimum and maximum age of employees who were terminated from the employees_1 table in the sql_for_business_analytics database. The WHERE clause filters the results to only include terminated employees, and the MIN and MAX functions are used to calculate the minimum and maximum age values for the selected employees.
+
+5. 
+
+To calculate the average service length and find the employees whose service length is greater than the average, you can use the following SQL query:
+
+SELECT *, DATEDIFF(CURRENT_DATE(), start_date) AS service_length
+FROM sql_for_business_analytics.employees_1
+HAVING service_length > AVG(DATEDIFF(CURRENT_DATE(), start_date))
+
+This query selects all columns from the employees_1 table in the sql_for_business_analytics database, and calculates the service length for each employee by subtracting their start date from the current date using the DATEDIFF() function.
+
+Then, the query uses the HAVING clause to filter the results to only include employees whose service length is greater than the average service length for all employees. The AVG() function is used to calculate the average service length.
+
+Note: the CURRENT_DATE() function returns the current date in the database system's time zone. If your database system uses a different time zone, you may need to adjust the query accordingly.
